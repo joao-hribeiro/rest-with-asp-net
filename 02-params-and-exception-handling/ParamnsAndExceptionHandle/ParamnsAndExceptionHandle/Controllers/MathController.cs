@@ -8,7 +8,7 @@ namespace ParamnsAndExceptionHandle.Controllers
     public class MathController : ControllerBase
     {
         [HttpGet("sum/{a}/{b}")]
-        public IActionResult Get(string a, string b)
+        public IActionResult Sum(string a, string b)
         {
             if (isNumeric(a) && isNumeric(b))
             {
@@ -16,6 +16,74 @@ namespace ParamnsAndExceptionHandle.Controllers
                 return Ok(sum);
             }
             return BadRequest("Invalid Input! Must be a number");
+        }
+
+        [HttpGet("subtraction/{a}/{b}")]
+        public IActionResult Subtraction(string a, string b)
+        {
+            if(isNumeric(a) && isNumeric(b)) {
+            
+                return Ok(ConvertToDecimal(a) - ConvertToDecimal(b));
+            }
+            return BadRequest("Must be a number");
+        }
+
+        [HttpGet("multiplication/{a}/{b}")]
+        public IActionResult Multiplication(string a, string b)
+        {
+            if(isNumeric(a) && isNumeric(b))
+            {
+                return Ok(ConvertToDecimal(a) * ConvertToDecimal(b));
+            }
+            return BadRequest("Must be a number");
+        }
+
+        [HttpGet("division/{a}/{b}")]
+        public IActionResult Division(string a, string b)
+        {
+            if(ConvertToDecimal(b) == 0)
+            {
+                return BadRequest("The denominator can't be zero!");
+            }
+            if (isNumeric(a) && isNumeric(b))
+            {
+                return Ok(ConvertToDecimal(a) / ConvertToDecimal(b));
+            }
+            return Ok("Must be a number");
+        }
+
+        [HttpGet("pow/{a}/{b}")]
+        public IActionResult Pow(string a, string b)
+        { 
+            if (isNumeric(a) && isNumeric(b))
+            {
+                return Ok(Math.Pow((double)ConvertToDecimal(a), (double)ConvertToDecimal(b)));
+            }
+            return Ok("Must be a number");
+        }
+
+        [HttpGet("root/{a}/{b}")]
+        public IActionResult Root(string a, string b)
+        {
+            if (ConvertToDecimal(b) == 0)
+            {
+                return BadRequest("Can't be zero!");
+            }
+            if (isNumeric(a) && isNumeric(b))
+            {
+                return Ok(Math.Pow((double)ConvertToDecimal(a), 1 / (double)ConvertToDecimal(b)));
+            }
+            return Ok("Must be a number");
+        }
+
+        [HttpGet("mean/{a}/{b}")]
+        public IActionResult Mean(string a, string b)
+        {
+            if (isNumeric(a) && isNumeric(b))
+            {
+                return Ok((ConvertToDecimal(a) + ConvertToDecimal(b)) / 2);
+            }
+            return Ok("Must be a number");
         }
 
         private decimal ConvertToDecimal(string value)
