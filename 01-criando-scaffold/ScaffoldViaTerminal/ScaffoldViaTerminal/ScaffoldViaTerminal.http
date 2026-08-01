@@ -1,0 +1,6 @@
+@ScaffoldViaTerminal_HostAddress = http://localhost:5286
+
+GET {{ScaffoldViaTerminal_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
