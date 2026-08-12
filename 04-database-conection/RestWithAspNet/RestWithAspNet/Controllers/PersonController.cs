@@ -48,7 +48,7 @@ namespace RestWithAspNet.Controllers
             return Ok(person);
         }
 
-        [HttpDelete("{a}")]
+        [HttpDelete("{id}")]
         public IActionResult Delete(long id)
         {
             _personService.Delete(id);
