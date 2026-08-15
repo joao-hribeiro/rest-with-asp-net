@@ -6,7 +6,7 @@ namespace RestWithAspNet.Controllers
     [Route("api/[controller]")]
     public class TestLogsController : ControllerBase
     {
-        private readonly ILogger _logger;   
+        private readonly ILogger _logger;
         public TestLogsController(ILogger<TestLogsController> logger)
         {
             _logger = logger;
