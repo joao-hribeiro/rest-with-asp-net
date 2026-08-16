@@ -12,8 +12,10 @@ namespace RestWithAspNet.Configurations
         {
             if (enviroment.IsDevelopment())
             {
-                var conectionString = configuration["PGSQLConnection:PGSQLConnectionString"];
-                if (String.IsNullOrEmpty(conectionString)) throw new ArgumentNullException("Connection string not found");
+                var conectionString = configuration["PGSQLConection:PGSQLConectionString"];
+                if (String.IsNullOrEmpty(conectionString)) { 
+                    throw new ArgumentNullException("Connection string not found"); 
+                }
                 try
                 {
                     using var evolveConection = new NpgsqlConnection(conectionString);

@@ -7,7 +7,7 @@ namespace RestWithAspNet.Configurations
     {
         public static IServiceCollection AddDatabaseConfiguration(this IServiceCollection services, IConfiguration configuration)
         {
-            var conectionString = configuration["PGSQLConnection:PGSQLConectionString"];
+            var conectionString = configuration["PGSQLConection:PGSQLConectionString"];
             if (String.IsNullOrEmpty(conectionString))
             {
                 throw new ArgumentNullException("Conection 'PGSQLConectionString' string not found");
