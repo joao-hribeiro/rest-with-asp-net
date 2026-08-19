@@ -5,8 +5,8 @@ namespace RestWithAspNet.Services.Impl
 {
     public class BookServicesImpl : IBookServices
     {
-        private readonly IBookRepository _bookRepository;
-        public BookServicesImpl(IBookRepository repository) 
+        private readonly IRepository<Book> _bookRepository;
+        public BookServicesImpl(IRepository<Book> repository) 
         { 
             _bookRepository = repository;
         }

@@ -5,11 +5,11 @@ using RestWithAspNet.Model.Context;
 
 namespace RestWithAspNet.Repositories.Implementation
 {
-    public class GenericRepositoy<T> : IRepository<T> where T : BaseEntity
+    public class GenericRepository<T> : IRepository<T> where T : BaseEntity
     {
         private readonly PGSQLContext _context;
         private DbSet<T> _dataset;
-        public GenericRepositoy(PGSQLContext context)
+        public GenericRepository(PGSQLContext context)
         {
             _context = context;
             _dataset = context.Set<T>();
