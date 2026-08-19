@@ -1,0 +1,58 @@
+﻿using Microsoft.EntityFrameworkCore;
+using RestWithAspNet.Model;
+using RestWithAspNet.Model.Base;
+using RestWithAspNet.Model.Context;
+
+namespace RestWithAspNet.Repositories.Implementation
+{
+    public class GenericRepositoy<T> : IRepository<T> where T : BaseEntity
+    {
+        private readonly PGSQLContext _context;
+        private DbSet<T> _dataset;
+        public GenericRepositoy(PGSQLContext context)
+        {
+            _context = context;
+            _dataset = context.Set<T>();
+        }
+        public List<T> FindAll()
+        {
+            return _dataset.ToList();
+        }
+
+        public T FindById(long id)
+        {
+            return _dataset.Find(id);
+        }
+        public T Create(T item)
+        {
+            _context.Add(item);
+            _context.SaveChanges();
+            return item;
+        }
+
+        public T Update(T item)
+        {
+            var existingItem = _dataset.Find(item.Id);
+            if (existingItem == null) return null;
+
+            _context.Entry(existingItem).CurrentValues.SetValues(item);
+            _context.SaveChanges();
+            return item;
+        }
+
+
+        public void Delete(long id) 
+        {
+            var existingItem = _dataset.Find(id);
+            if (existingItem == null) return;
+
+            _context.Remove(existingItem);
+            _context.SaveChanges();
+        }
+
+        public bool Exists(long id)
+        {
+            return _dataset.Any(e  => e.Id == id);
+        }
+    }
+}
