@@ -6,30 +6,40 @@ namespace RestWithAspNet.Services.Impl
 {
     public class PersonSerivecesImpl : IPersonServices
     {
-        private readonly IPersonRepository _repository;
-        public PersonSerivecesImpl(IPersonRepository repository)
+        private readonly IRepository<Person> _personRepository;
+        public PersonSerivecesImpl(IRepository<Person> personRepository)
         {
-            _repository = repository;
+            _personRepository = personRepository;
         }
+
         public List<Person> FindAll()
         {
-            return _repository.FindAll();
+            return _personRepository.FindAll();
         }
+
         public Person FindById(long id) 
         {
-            return _repository.FindById(id);
+            return _personRepository.FindById(id);
         }
+
         public Person Create(Person person)
         {
-            return _repository.Create(person);
+            return _personRepository.Create(person);
         }
+
         public Person Update(Person person)
         {
-            return _repository.Update(person);
+            return _personRepository.Update(person);
         }
+
         public void Delete(long id)
         {
-            _repository.Delete(id);
+            _personRepository.Delete(id);
+        }
+
+        public void Exists(long id)
+        {
+            _personRepository.Exists(id);
         }
     }
 }

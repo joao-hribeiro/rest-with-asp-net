@@ -40,7 +40,6 @@ namespace RestWithAspNet.Repositories.Implementation
             return item;
         }
 
-
         public void Delete(long id) 
         {
             var existingItem = _dataset.Find(id);

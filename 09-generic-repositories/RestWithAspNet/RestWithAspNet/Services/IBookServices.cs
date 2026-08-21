@@ -9,5 +9,6 @@ namespace RestWithAspNet.Services
         List<Book> FindAll();
         Book Update(Book book);
         void Delete(long id);
+        void Exists(long id);
     }
 }

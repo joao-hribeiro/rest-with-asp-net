@@ -34,5 +34,10 @@ namespace RestWithAspNet.Services.Impl
         {
             _bookRepository.Delete(id);
         }
+
+        public void Exists(long id)
+        {
+            _bookRepository.Exists(id);
+        }
     }
 }
