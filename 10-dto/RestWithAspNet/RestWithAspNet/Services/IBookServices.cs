@@ -1,0 +1,14 @@
+﻿using RestWithAspNet.Model;
+
+namespace RestWithAspNet.Services
+{
+    public interface IBookServices
+    {
+        Book Create(Book book);
+        Book FindById(long id);
+        List<Book> FindAll();
+        Book Update(Book book);
+        void Delete(long id);
+        void Exists(long id);
+    }
+}
